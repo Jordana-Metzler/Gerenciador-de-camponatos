@@ -75,6 +75,7 @@ def registrar_partida(campeonato)-> None:
     parciais_vencedor, parciais_perdedor= coletar_parciais(sets_vencedor, sets_perdedor)
     partida: Partida = Partida(vencedor, perdedor, sets_vencedor, sets_perdedor, parciais_vencedor, parciais_perdedor)
     partida.calcula_sets()
+    campeonato.partidas.append(partida)
 
 def exibir_classificacao(campeonato)-> None:
     """Exibe a classificação atual do campeonato, ordenada por pontos, vitórias e média de pontos."""

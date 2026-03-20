@@ -22,4 +22,18 @@ class Partida:
         self.vencedor.atualizar_stats( 1, pontos_vencedor, self.sets_vencedor, self.sets_perdedor, sum(self.parciais_vencedor), sum(self.parciais_perdedor))
         self.perdedor.atualizar_stats( 0, pontos_perdedor, self.sets_perdedor, self.sets_vencedor, sum(self.parciais_perdedor), sum(self.parciais_vencedor))
     
-    
+    def para_dict(self) -> dict:
+        return {
+            "vencedor": self.vencedor.nome,
+            "perdedor": self.perdedor.nome,
+            "sets_vencedor": self.sets_vencedor,
+            "sets_perdedor": self.sets_perdedor,
+            "parciais_vencedor": self.parciais_vencedor,
+            "parciais_perdedor": self.parciais_perdedor
+        }
+        
+    @classmethod 
+    def de_dict(cls, dados: dict, campeonato) -> "Partida":
+        vencedor = campeonato.buscar_time(dados["vencedor"])
+        perdedor = campeonato.buscar_time(dados["perdedor"])
+        return cls(vencedor, perdedor, dados["sets_vencedor"], dados["sets_perdedor"], dados["parciais_vencedor"], dados["parciais_perdedor"])

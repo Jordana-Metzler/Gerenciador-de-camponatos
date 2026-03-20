@@ -1,3 +1,4 @@
+from Classes.Partida import Partida
 from Classes.Time import Time
 
 class Campeonato:
@@ -5,6 +6,7 @@ class Campeonato:
         self.nome: str = nome
         self.times: list[Time] = []
         self.chaves: dict = {}
+        self.partidas: list[Partida] = []
     
     def cadastrar_time(self, nome_time: str)-> None:
         novo_time: Time = Time(nome_time)
@@ -23,6 +25,7 @@ class Campeonato:
         return {
         "nome": self.nome,
         "times": [time.para_dict() for time in self.times],
+        "partidas": [partida.para_dict() for partida in self.partidas],
         "chaves": self.chaves
     }
         
@@ -32,5 +35,8 @@ class Campeonato:
         for dado_time in dados["times"]:
             time = Time.de_dict(dado_time)
             campeonato.times.append(time)
-            campeonato.chaves = dados["chaves"]
+        for dado_partida in dados["partidas"]:
+            partida = Partida.de_dict(dado_partida, campeonato)
+            campeonato.partidas.append(partida)
+        campeonato.chaves = dados["chaves"]
         return campeonato
