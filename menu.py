@@ -7,8 +7,11 @@ def cadastrar_time(campeonato) -> None:
         nome_input: str = input("Digite o nome do time (ou 'PARAR' para sair): ").upper()
         if nome_input == "PARAR":
             break
-        campeonato.cadastrar_time(nome_input)
-        print(f"Time '{nome_input}' cadastrado com sucesso!")
+        if campeonato.buscar_time(nome_input) is not None:
+            print(f"Time '{nome_input}' já cadastrado, insira outro time.")
+        else:
+            campeonato.cadastrar_time(nome_input)
+            print(f"Time '{nome_input}' cadastrado com sucesso!")
 
 
 def selecionar_time(campeonato)-> tuple[Time, Time]:
