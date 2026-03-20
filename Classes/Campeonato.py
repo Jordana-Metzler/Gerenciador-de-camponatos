@@ -4,6 +4,7 @@ class Campeonato:
     def __init__(self, nome: str)-> None:
         self.nome: str = nome
         self.times: list[Time] = []
+        self.chaves: dict = {}
     
     def cadastrar_time(self, nome_time: str)-> None:
         novo_time: Time = Time(nome_time)

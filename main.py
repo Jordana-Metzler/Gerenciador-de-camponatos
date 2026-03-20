@@ -1,5 +1,5 @@
 from Classes.Campeonato import Campeonato
-from menu import cadastrar_time, registrar_partida, exibir_classificacao
+from menu import cadastrar_time, exibir_chaves, registrar_partida, exibir_classificacao
 from service.persistencia import carregar_campeonato, salvar_campeonato
 from service.sorteio import sortear_times
 
@@ -18,7 +18,8 @@ while True:
     print("2. Registrar partida")
     print("3. Ver classificação")
     print("4. Sortear chaves")
-    print("5. Times cadastrados")
+    print("5. Exibir chaves")
+    print("6. Times cadastrados")
     print("0. Sair")
         
     opcao = input("Escolha: ")
@@ -40,6 +41,8 @@ while True:
             salvar_campeonato(meu_campeonato)
             pass
         case "5":
+            exibir_chaves(meu_campeonato)
+        case "6":
             print("Times cadastrados:")
             for time in meu_campeonato.times:
                 print(f"- {time.nome}")

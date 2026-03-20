@@ -1,4 +1,4 @@
-from random import random
+import random
 import string
 
 
@@ -8,7 +8,6 @@ def sortear_times(campeonato) -> None:
     n_chaves: int = int(input("Quantas chaves? "))
     times_por_chave: int = len(campeonato.times) // n_chaves
     random.shuffle(campeonato.times)
-    print([time.nome for time in campeonato.times])
     grupos = []
     
     for i in range(n_chaves):
@@ -23,3 +22,7 @@ def sortear_times(campeonato) -> None:
         for time in grupo:
             print(f"  - {time.nome}")
     
+    campeonato.chaves = {
+    string.ascii_uppercase[index]: [time.nome for time in grupo]
+    for index, grupo in enumerate(grupos)
+    }

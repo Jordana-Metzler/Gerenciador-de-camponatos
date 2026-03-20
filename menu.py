@@ -78,7 +78,14 @@ def exibir_classificacao(campeonato)-> None:
     for time in campeonato.classificacao():
         print(f"Equipe: {time.nome} - Vitórias: {time.vitorias}, Pontos: {time.pontos}, Sets Vencidos: {time.sets_vencidos}, Média de Pontos: {time.calcular_pontos_avarege():.4f}")
         
-
+def exibir_chaves(campeonato) -> None:
+    if not campeonato.chaves:
+        print("Nenhuma chave sorteada ainda!")
+        return
+    for letra, times in campeonato.chaves.items():
+        print(f"\nChave {letra}:")
+        for time in times:
+            print(f"  - {time}")
 
 
 
